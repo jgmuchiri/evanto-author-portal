@@ -90,7 +90,6 @@ class Evanto_author_portal
                 item_name varchar(255) null,
                 buyer varchar(255) null,
                 purchase_date varchar(255) null,
-                name    varchar(255) null,
                 licence_type varchar(255) null,
                 supported_until varchar(255) null) $charset_collate;";
         require_once ABSPATH.'wp-admin/includes/upgrade.php';

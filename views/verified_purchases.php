@@ -9,8 +9,8 @@ if(isset($_POST['dump_purchases']))
     <div class="panel-heading">
         <div class="panel-title"><h4>Verified Purchases</h4></div>
     </div>
-    <div class="panel-body">
-        <table class="table table-bordered">
+    <div class="panel-body table-responsive">
+        <table class="table table-bordered" style="font-size:13px">
             <thead>
             <tr>
                 <th>Item ID</th>
@@ -24,10 +24,13 @@ if(isset($_POST['dump_purchases']))
             <?php foreach ($purchases as $purchase): ?>
                 <tr>
                     <td><?php echo $purchase->item_id; ?></td>
-                    <td><?php echo $purchase->item_name; ?></td>
+                    <td>
+                        <?php echo $purchase->item_name; ?><br/>
+                       <code><?php echo $purchase->purchase_code; ?></code>
+                    </td>
                     <td><?php echo $purchase->buyer; ?></td>
                     <td><?php echo date('d M Y H:ia', strtotime($purchase->created_at)); ?></td>
-                    <td><?php echo $purchase->licence; ?></td>
+                    <td><?php echo $purchase->licence_type; ?></td>
                     <td><?php echo date('d M Y H:ia', strtotime($purchase->supported_until)); ?></td>
                 </tr>
             <?php endforeach; ?>

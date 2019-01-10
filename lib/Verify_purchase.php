@@ -63,7 +63,6 @@ class Verify_purchase
                 'message' => 'Check you author API key and try again',
             ];
         }
-
         //Validate code
         if(
             (FALSE === $verify_obj) ||
@@ -94,9 +93,11 @@ class Verify_purchase
     {
         global $wpdb;
         if(isset($_POST['purchase_code'])) {
-            $purchase_code = htmlspecialchars(trim($_POST['purchase_code']));
+            $purchase_code = htmlspecialchars($_POST['purchase_code']);
+            $purchase_code = str_replace(' ','',$purchase_code);
             $result = self::verifyPurchase($purchase_code);
             if(is_object($result)) {
+
                 $data = [
                     'purchase_code' => $purchase_code,
                     'item_name' => $result->item_name,
