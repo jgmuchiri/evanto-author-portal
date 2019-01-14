@@ -10,7 +10,7 @@
 class Client
 {
 
-    public $methods;
+    public $methods,$sites,$site,$uri;
 
     protected $bearer;
 
@@ -20,15 +20,26 @@ class Client
 
         $username = get_option(EAP_USERNAME);
 
+        $this->sites = [
+            'codecanyon',
+            'themeforest',
+            'videohive',
+            'auidojungle',
+            'graphicsriver',
+            'photodune',
+            '3docean'
+        ];
+
         $this->methods = [
             // User details
             'profile' => [
                 'collections' => '/v3/market/user/collections',
                 'collection' => '/v3/market/user/collection',
+                'bookmarks' => '/v3/market/user/bookmarks',
                 'details' => '/v1/market/user:'.$username.'.json',
                 'badges' => '/v1/market/user-badges:'.$username.'.json',
-                'portfolio' => '/v1/market/user-items-by-site:'.$username.'.json',
-                'newest' => '/v1/market/new-files-from-user:'.$username.',{site}.json',
+                'items' => '/v1/market/user-items-by-site:'.$username.'.json',
+                'newest' => '/v1/market/new-files-from-user:'.$username,
             ],
             // Private user details
             'user' => [
@@ -41,11 +52,14 @@ class Client
                 'email' => '/v1/market/private/user/email.json',
                 'month-sales' => '/v1/market/private/user/earnings-and-sales-by-month.json',
             ],
+            'catalog'=>[
+                'item'=>'/v3/market/catalog/item',
+            ]
         ];
+
     }
 
-
-    function fetchData($uri)
+    function fetchData($uri,$site='')
     {
         if(empty($this->bearer)) {
             return [
@@ -54,6 +68,8 @@ class Client
                 'message' => 'No bearer key provided',
             ];
         }
+        if(!empty($site))
+            $this->site=$site;
 
         //setting the header for the rest of the api
         $bearer = 'bearer '.$this->bearer;

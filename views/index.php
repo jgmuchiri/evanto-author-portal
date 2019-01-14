@@ -21,7 +21,7 @@
                 </li>
                 <li>
                     <a class="btn btn-info"
-                       href="?page=<?php echo $_GET['page']; ?>&tab=my_orders">
+                       href="?page=<?php echo $_GET['page']; ?>&tab=orders">
                         My Orders</a>
                 </li>
                 <li>
@@ -33,6 +33,11 @@
                     <a class="btn btn-info"
                        href="?page=<?php echo $_GET['page']; ?>&tab=collections">
                         My Collections</a>
+                </li>
+                <li>
+                    <a class="btn btn-info"
+                       href="?page=<?php echo $_GET['page']; ?>&tab=bookmarks">
+                        My Bookmarks</a>
                 </li>
             </ul>
         </div>
@@ -51,6 +56,15 @@
                     break;
                 case 'collections':
                     include 'collections.php';
+                    break;
+                case 'bookmarks':
+                    include 'bookmarks.php';
+                    break;
+                case 'my_items':
+                    include 'my_items.php';
+                    break;
+                case 'orders':
+                    include 'orders.php';
                     break;
                 default:
                     include "dashboard.php";

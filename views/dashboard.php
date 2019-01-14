@@ -7,6 +7,8 @@ if(isset($_POST['eap_key'])) {
 if(!empty(get_option(EAP_USERNAME))):
     $userdata = $eap_client->fetchData($eap_client->methods['profile']['details']);
     $user = $userdata->user;
+
+    $badges = $eap_client->fetchData($eap_client->methods['profile']['badges']);
     ?>
     <table class="table">
         <tr>
@@ -16,11 +18,19 @@ if(!empty(get_option(EAP_USERNAME))):
             <td>
 
                 <h2><?php echo $user->username; ?></h2>
-                <strong>Country</strong>: <?php echo $user->country; ?><br/>
-                <strong>Sales</strong>: <?php echo $user->sales; ?> <br/>
-                <strong>Locaton</strong>: <?php echo $user->location; ?><br/>
-
-                <strong>Followers</strong>: <?php echo $user->followers; ?>
+                <?php if(!empty($badges->{'user-badges'})):
+                    foreach ($badges->{'user-badges'} as $badge): ?>
+                        <img title="<?php echo $badge->label; ?>" src="<?php echo $badge->image; ?>"
+                             style="width:20px;margin-right:10px;"/>
+                    <?php endforeach;
+                endif; ?>
+                <br/>
+                <p>
+                    <strong>Country</strong>: <?php echo $user->country; ?><br/>
+                    <strong>Sales</strong>: <?php echo $user->sales; ?> <br/>
+                    <strong>Locaton</strong>: <?php echo $user->location; ?><br/>
+                    <strong>Followers</strong>: <?php echo $user->followers; ?>
+                </p>
             </td>
         </tr>
     </table>
