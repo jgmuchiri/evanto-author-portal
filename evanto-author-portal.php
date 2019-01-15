@@ -3,7 +3,7 @@
 Plugin Name: Evanto Author Portal
 Plugin URI: https://gitlab.com/jgmuchiri/evanto-author-portal/
 Description: Evanto Purchase Verification Plugin. Create a token here https://build.envato.com/create-token/
-Version: 1.4
+Version: 1.5
 Author: A&M Digital Tech
 Contributors: John Muchiri
 Author URI: https://amdtllc.com
@@ -26,10 +26,11 @@ class Evanto_author_portal
     {
         add_action('admin_menu', [&$this, 'menu_items']);
         add_action('wp_enqueue_scripts', [&$this, 'eap_styles']);
-        add_action('wp_enqueue_scripts', [&$this, 'eap_scripts']);
+        add_action('admin_enqueue_scripts', [&$this, 'eap_scripts']);
 
-        $this->eap_scripts();
         $this->eap_styles();
+        $this->eap_scripts();
+
         $this->checkUpdate();
 
         include plugin_dir_path(__FILE__).'functions.php';
@@ -50,14 +51,16 @@ class Evanto_author_portal
         wp_enqueue_style('fa-style', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
         wp_enqueue_style('bootstrap', $dir.'assets/css/bootstrap.min.css');
         wp_enqueue_style('style-main', $dir.'assets/css/style.css');
+        wp_enqueue_style('datatables', 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css');
     }
 
     function eap_scripts()
     {
         $dir = plugin_dir_url(__FILE__);
-        wp_enqueue_script('jquery', $dir.'assets/js/jquery-1.11.3.min.js', [], NULL, TRUE);
+        wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.3.1.js', [], NULL, TRUE);
+        wp_enqueue_script('datatables', '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js', ['jquery'], NULL, TRUE);
 //        wp_enqueue_script('bootstrap', $dir.'assets/js/bootstrap.min.js', [], NULL, TRUE);
-        wp_enqueue_script('custom', $dir.'assets/js/custom.js', [], NULL, TRUE);
+        wp_enqueue_script('custom', $dir.'assets/js/custom.js', ['jquery'], NULL, TRUE);
     }
 
     function menu_items()

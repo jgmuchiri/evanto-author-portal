@@ -5,19 +5,19 @@ if(isset($_POST['eap_key'])) {
 }
 
 if(!empty(get_option(EAP_USERNAME))):
-    $userdata = $eap_client->fetchData($eap_client->methods['profile']['details']);
-    $user = $userdata->user;
+    $profile = $eap_client->fetchData($eap_client->methods['profile']['details'])->user;
+    $user = $eap_client->fetchData($eap_client->methods['user']['details'])->account;
 
     $badges = $eap_client->fetchData($eap_client->methods['profile']['badges']);
     ?>
     <table class="table">
         <tr>
             <td class="col-sm-3" rowspan="">
-                <img class="thumbnail" src="<?php echo $user->image; ?>"/>
+                <img class="thumbnail" src="<?php echo $profile->image; ?>"/>
             </td>
             <td>
 
-                <h2><?php echo $user->username; ?></h2>
+                <h2><?php echo $user->firstname.' '.$user->surname.' ('.$profile->username.')'; ?></h2>
                 <?php if(!empty($badges->{'user-badges'})):
                     foreach ($badges->{'user-badges'} as $badge): ?>
                         <img title="<?php echo $badge->label; ?>" src="<?php echo $badge->image; ?>"
@@ -26,11 +26,19 @@ if(!empty(get_option(EAP_USERNAME))):
                 endif; ?>
                 <br/>
                 <p>
-                    <strong>Country</strong>: <?php echo $user->country; ?><br/>
-                    <strong>Sales</strong>: <?php echo $user->sales; ?> <br/>
-                    <strong>Locaton</strong>: <?php echo $user->location; ?><br/>
-                    <strong>Followers</strong>: <?php echo $user->followers; ?>
+                    <strong>Country</strong>: <?php echo $profile->country; ?><br/>
+                    <strong>Sales</strong>: <?php echo $profile->sales; ?> <br/>
+                    <strong>Locaton</strong>: <?php echo $profile->location; ?><br/>
+                    <strong>Followers</strong>: <?php echo $profile->followers; ?>
                 </p>
+                <table class="table">
+                    <tr>
+                        <td class="alert alert-warning"> Available Earnings: $<?php echo $user->available_earnings; ?></td>
+                        <td class="alert alert-success"> Balance: $<?php echo $user->balance; ?></td>
+                        <td class="alert alert-info">Total Deposits: $<?php echo $user->total_deposits; ?></td>
+                    </tr>
+                </table>
+
             </td>
         </tr>
     </table>

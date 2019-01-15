@@ -98,7 +98,6 @@ function gatebe_push_update($transient)
         }
 
     }
-
     if($remote) {
         $remote = json_decode($remote['body']);
         $plugin = PLUGIN_SLUG.'/'.PLUGIN_SLUG.'.php';
@@ -106,12 +105,14 @@ function gatebe_push_update($transient)
         // your installed plugin version should be on the line below! You can obtain it dynamically of course
         if($remote && version_compare($transient->checked[$plugin], $remote->version, '<') && version_compare($remote->requires, get_bloginfo('version'), '<')) {
             $res = new stdClass();
+
             $res->slug = PLUGIN_SLUG;
             $res->plugin = $plugin;
             $res->new_version = $remote->version;
             $res->tested = $remote->tested;
             $res->package = $remote->download_url;
             $res->url = $remote->author_homepage;
+
             $transient->response[$res->plugin] = $res;
             $transient->checked[$res->plugin] = $remote->version;
         }

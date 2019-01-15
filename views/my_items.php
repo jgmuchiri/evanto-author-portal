@@ -1,8 +1,8 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="panel-title"><h4>My Items</h4></div>
+<div class="bcard border-success">
+    <div class="bcard-header">
+        <div class="bcard-title"><h4>My Items</h4></div>
     </div>
-    <div class="panel-body">
+    <div class="bcard-body">
 
         <?php foreach ($eap_client->sites as $site):
             $uri = $eap_client->methods['profile']['newest'].','.$site.'.json';
@@ -11,7 +11,7 @@
             <h3><?php echo strtoupper($site); ?></h3>
             <div class="row">
                 <?php if(!empty($my_items->{'new-files-from-user'})):
-                    foreach ($my_items->{'new-files-from-user'} as $my_item): ?>
+                    foreach ($my_items->{'new-files-from-user'} as $my_item):  ?>
                         <div class="col-sm-6" style="margin-bottom:10px">
                             <div class="row">
                                 <div class="col-xs-2">
@@ -23,11 +23,11 @@
                                            href="<?php echo $my_item->url; ?>"><?php echo $my_item->item; ?></a>
                                     </strong>
                                     <br/>
-                                    price: $<?php echo $my_item->cost; ?> |
-                                    rating: <?php echo $my_item->rating; ?> |
-                                    sales: <?php echo $my_item->sales; ?> <br/>
-                                    last update: <?php echo date('d M, Y', strtotime($my_item->last_update)); ?> |
-                                    category: <?php echo $my_item->category; ?>
+                                    <strong>price</strong>: $<?php echo $my_item->cost; ?> |
+                                    <strong>rating</strong>: <?php echo $my_item->rating; ?> |
+                                    <strong>sales</strong>: <?php echo $my_item->sales; ?> <br/>
+                                    <strong>last update</strong>: <?php echo date('d M, Y', strtotime($my_item->last_update)); ?> |
+                                    <strong>category</strong>: <?php echo $my_item->category; ?>
                                 </div>
 
                             </div>

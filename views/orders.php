@@ -21,7 +21,9 @@ $orders = $eap_client->fetchData($eap_client->methods['user']['purchases']);
             </thead>
             <tbody>
             <?php if(!empty($orders->results)):
-                foreach ($orders->results as $result): ?>
+                foreach ($orders->results as $result):
+                    $dl_url = 'https://'.parse_url($result->item->author_url)['host'].'/user/'.get_option(EAP_USERNAME).'/download_purchase/'.$result->code;
+                    ?>
                     <tr>
                         <td><?php echo date('d M Y', strtotime($result->sold_at)); ?></td>
                         <td class="text-sm"><a target="_blank"
@@ -37,7 +39,7 @@ $orders = $eap_client->fetchData($eap_client->methods['user']['purchases']);
                         </td>
                         <td><?php echo date('d M Y', strtotime($result->item->updated_at)); ?></td>
                         <td>
-                            <a href=""><i class="fa fa-download"></i> </a>
+                            <a href="<?php echo $dl_url; ?>"><i class="fa fa-download"></i> </a>
                         </td>
                     </tr>
                 <?php endforeach;
