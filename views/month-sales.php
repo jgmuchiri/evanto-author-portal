@@ -3,11 +3,11 @@ $sales = $eap_client->fetchData($eap_client->methods['user']['month-sales'])->{"
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="bcard border-success">
-            <div class="bcard-header">
-                <div class="bcard-title"><h4>Monthly sales</h4></div>
+        <div class="panel border-success">
+            <div class="panel-heading">
+                <div class="panel-title"><h4>Monthly sales</h4></div>
             </div>
-            <div class="bcard-body table-responsive">
+            <div class="panel-body table-responsive">
                 <?php if(!empty($sales)): ?>
                     <table class="table table-striped eap-table mdl-data-table">
                         <thead>

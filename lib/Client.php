@@ -10,56 +10,65 @@
 class Client
 {
 
-    public $methods,$sites,$site,$uri;
+    public $methods, $sites, $site, $uri;
 
     protected $bearer;
 
-    function __construct($args=[])
+    function __construct($args = [])
     {
         $this->bearer = get_option(EAP_AUTHOR_KEY);
 
         $username = get_option(EAP_USERNAME);
+        $site = EVANTO_DEFAULT_SITE;
+
+        if(isset($_GET['site'])) {
+            $site = $_GET['site'];
+        }
 
         $this->sites = [
             'codecanyon',
             'themeforest',
             'videohive',
-            'auidojungle',
-            'graphicsriver',
+            'audiojungle',
+            'graphicriver',
             'photodune',
-            '3docean'
+            '3docean',
         ];
 
         $this->methods = [
             // User details
             'profile' => [
-                'collections' => '/v3/market/user/collections',
-                'collection' => '/v3/market/user/collection',
-                'bookmarks' => '/v3/market/user/bookmarks',
-                'details' => '/v1/market/user:'.$username.'.json',
-                'badges' => '/v1/market/user-badges:'.$username.'.json',
-                'items' => '/v1/market/user-items-by-site:'.$username.'.json',
-                'newest' => '/v1/market/new-files-from-user:'.$username,
+                'collections' => EVANTO_USER_API_V3.'user/collections',
+                'collection' => EVANTO_USER_API_V3.'user/collection',
+                'bookmarks' => EVANTO_USER_API_V3.'market/user/bookmarks',
+                'details' => EVANTO_USER_API_V1.'user:'.$username.'.json',
+                'badges' => EVANTO_USER_API_V1.'user-badges:'.$username.'.json',
+                'items' => EVANTO_USER_API_V1.'user-items-by-site:'.$username.'.json',
+                'newest' => EVANTO_USER_API_V1.'new-files-from-user:'.$username,
             ],
             // Private user details
             'user' => [
-                'sales' => '/v3/market/author/sales',
-                'sale' => '/v3/market/author/sale',
-                'purchases' => '/v3/market/buyer/list-purchases',
-                'purchase' => '/v3/market/buyer/purchase',
-                'details' => '/v1/market/private/user/account.json',
-                'username' => '/v1/market/private/user/username.json',
-                'email' => '/v1/market/private/user/email.json',
-                'month-sales' => '/v1/market/private/user/earnings-and-sales-by-month.json',
+                'sales' => EVANTO_USER_API_V3.'author/sales',
+                'sale' => EVANTO_USER_API_V3.'author/sale',
+                'purchases' => EVANTO_USER_API_V3.'buyer/list-purchases',
+                'purchase' => EVANTO_USER_API_V3.'buyer/purchase',
+
+                'details' => EVANTO_USER_API_V1.'private/user/account.json',
+                'username' => EVANTO_USER_API_V1.'private/user/username.json',
+                'email' => EVANTO_USER_API_V1.'private/user/email.json',
+                'month-sales' => EVANTO_USER_API_V1.'private/user/earnings-and-sales-by-month.json',
             ],
-            'catalog'=>[
-                'item'=>'/v3/market/catalog/item',
-            ]
+            'catalog' => [
+                'item' => EVANTO_USER_API_V3.'catalog/item',
+                'random' => EVANTO_USER_API_V1.'random-new-files:'.$site.'.json',
+                'featured' => EVANTO_USER_API_V1.'features:'.$site.'.json',
+                'popular' => EVANTO_USER_API_V1.'popular:'.$site.'.json',
+            ],
         ];
 
     }
 
-    function fetchData($uri,$site='')
+    function fetchData($uri)
     {
         if(empty($this->bearer)) {
             return [
@@ -68,8 +77,6 @@ class Client
                 'message' => 'No bearer key provided',
             ];
         }
-        if(!empty($site))
-            $this->site=$site;
 
         //setting the header for the rest of the api
         $bearer = 'bearer '.$this->bearer;
@@ -79,7 +86,7 @@ class Client
         $header[] = 'Content-type: application/json; charset=utf-8';
         $header[] = 'Authorization: '.$bearer;
 
-        $evanto_api_url = curl_init('https://api.envato.com'.$uri);
+        $evanto_api_url = curl_init($uri);
         curl_setopt($evanto_api_url, CURLOPT_HTTPHEADER, $header);
         curl_setopt($evanto_api_url, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($evanto_api_url, CURLOPT_RETURNTRANSFER, 1);

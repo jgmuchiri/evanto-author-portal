@@ -12,7 +12,7 @@
                 <li>
                     <a class="btn btn-warning"
                        href="?page=<?php echo $_GET['page']; ?>&tab=verify_purchase">
-                        Verify purchase</a>
+                        Verify Purchase</a>
                 </li>
 
                 <li>
@@ -23,9 +23,9 @@
                 <li>
                     <a class="btn btn-success"
                        href="?page=<?php echo $_GET['page']; ?>&tab=month-sales">
-                        Monthly sales</a>
+                        Monthly Sales</a>
                 </li>
-
+                <li><hr/></li>
                 <li>
                     <a class="btn btn-info"
                        href="?page=<?php echo $_GET['page']; ?>&tab=orders">
@@ -46,6 +46,14 @@
                        href="?page=<?php echo $_GET['page']; ?>&tab=bookmarks">
                         My Bookmarks</a>
                 </li>
+
+                <li><hr/></li>
+                <li>
+                    <a class="btn btn-default"
+                       href="?page=<?php echo $_GET['page']; ?>&tab=browse">
+                        Browse</a>
+                </li>
+
 
             </ul>
         </div>
@@ -76,6 +84,9 @@
                     break;
                 case 'month-sales':
                     include 'month-sales.php';
+                    break;
+                case 'browse':
+                    include 'browse.php';
                     break;
                 default:
                     include "dashboard.php";

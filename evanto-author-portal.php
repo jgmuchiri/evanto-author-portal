@@ -2,13 +2,13 @@
 /*
 Plugin Name: Evanto Author Portal
 Plugin URI: https://gitlab.com/jgmuchiri/evanto-author-portal/
-Description: Evanto Purchase Verification Plugin. Create a token here https://build.envato.com/create-token/
+Description: Evanto Author Portal. Manage your Evanto account from your WordPress dashboard. Create a token here https://build.envato.com/create-token/
 Version: 1.5
 Author: A&M Digital Tech
 Contributors: John Muchiri
 Author URI: https://amdtllc.com
 Donate link: https://cashier.amdtllc.com
-Tags: Evanto, CodeCanyon, License, API
+Tags: Evanto, CodeCanyon, License, API, WordPress, Purchase code, codecanyon,themeforest,videohive,auidojungle,graphicsriver,photodune,3docean
 
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -17,7 +17,9 @@ Installation: Test
 define('EAP_VERIFIED_PURCHASES', 'eap_verified_purchases');
 define('EAP_AUTHOR_KEY', 'eap_author_key');
 define('EAP_USERNAME', 'eap_username');
-define('EVANTO_USER_API', 'https://api.envato.com/v3/market/user');
+define('EVANTO_USER_API_V1', 'https://api.envato.com/v1/market/');
+define('EVANTO_USER_API_V3', 'https://api.envato.com/v3/market/');
+define('EVANTO_DEFAULT_SITE', 'themeforest'); //codecanyon,themeforest,videohive,auidojungle,graphicsriver,photodune,3docean
 
 class Evanto_author_portal
 {
@@ -90,7 +92,7 @@ class Evanto_author_portal
         $charset_collate = $wpdb->get_charset_collate();
 
         $eap_table = EAP_VERIFIED_PURCHASES;
-        $query = "CREATE TABLE {$wpdb->prefix}{$eap_table} (
+        $query = "CREATE TABLE IF NOT EXIST {$wpdb->prefix}{$eap_table} (
                 id int auto_increment primary key,
                 purchase_code VARCHAR(255) NOT NULL,
                 item_id varchar(255) null,

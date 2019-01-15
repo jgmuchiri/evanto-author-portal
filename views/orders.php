@@ -1,7 +1,7 @@
 <?php
 $orders = $eap_client->fetchData($eap_client->methods['user']['purchases']);
 ?>
-<div class="panel panel-default">
+<div class="panel border-info">
     <div class="panel-heading">
         <div class="panel-title"><h4>Purchases <span class="badge"><?php echo $orders->count; ?></span> </h4></div>
     </div>

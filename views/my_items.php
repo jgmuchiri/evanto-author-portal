@@ -1,8 +1,8 @@
-<div class="bcard border-success">
-    <div class="bcard-header">
-        <div class="bcard-title"><h4>My Items</h4></div>
+<div class="panel border-success">
+    <div class="panel-heading">
+        <div class="panel-title"><h4>My Items</h4></div>
     </div>
-    <div class="bcard-body">
+    <div class="panel-body">
 
         <?php foreach ($eap_client->sites as $site):
             $uri = $eap_client->methods['profile']['newest'].','.$site.'.json';
