@@ -27,7 +27,6 @@ if(isset($_GET['type']) && !empty($_GET['type'])) {
        class="btn btn-default">Featured</a>
     <a href="<?php echo '?page='.$_GET['page'].'&tab=browse&site='.$site.'&type=popular'; ?>"
        class="btn btn-default">Popular</a>
-    <a href="" class="btn btn-default">Recent</a>
 </div>
 <hr/>
 
