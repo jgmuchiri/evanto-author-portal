@@ -6,7 +6,7 @@
  * @author  Florian Brinkmann
  */
 
-namespace Moenus\GitLabUpdater;
+namespace updater\GitLabUpdater;
 
 /**
  * If this file is called directly, abort.

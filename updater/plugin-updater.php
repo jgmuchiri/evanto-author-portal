@@ -64,10 +64,16 @@ class PluginUpdater extends UpdaterBase {
 			$this->plugin_data = $plugin_data;
 		}
 
+
 		/**
 		 * Check if we have values.
 		 */
-		if ( isset( $args['slug'] ) && isset( $args['plugin_base_name'] ) && isset( $args['access_token'] ) && isset( $args['gitlab_url'] ) && isset( $args['repo'] ) ) {
+		if ( isset( $args['slug'] )
+            && isset( $args['plugin_base_name'] )
+//            && isset( $args['access_token'] )
+            && isset( $args['gitlab_url'] )
+            && isset( $args['repo'] )
+        ) {
 			/**
 			 * Create array to insert them into plugin_data.
 			 */
@@ -84,6 +90,7 @@ class PluginUpdater extends UpdaterBase {
 			 */
 			$this->plugin_data[ $args['slug'] ] = $tmp_array;
 		} // End if().
+
 
 		/**
 		 * Hook into pre_set_site_transient_update_plugins to modify the update_plugins
@@ -247,7 +254,7 @@ class PluginUpdater extends UpdaterBase {
 }
 new PluginUpdater([
     'slug' => 'evanto-author-portal',
-    'plugin_base_name' => 'evanto-author-portal/Evanto_author_portal.php',
+    'plugin_base_name' => 'evanto-author-portal/evanto-author-portal.php',
     'gitlab_url' => 'https://gitlab.com',
     'repo' => 'jgmuchiri/evanto-author-portal',
 ]);

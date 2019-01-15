@@ -3,9 +3,7 @@
 Plugin Name: Evanto Author Portal
 Plugin URI: https://gitlab.com/jgmuchiri/evanto-author-portal/
 Description: Evanto Purchase Verification Plugin. Create a token here https://build.envato.com/create-token/
-Version: 1.0
-Stable tag: 1.0
-
+Version: 1.3
 Author: A&M Digital Tech
 Contributors: John Muchiri
 Author URI: https://amdtllc.com
@@ -19,7 +17,7 @@ Installation: Test
 define('EAP_VERIFIED_PURCHASES', 'eap_verified_purchases');
 define('EAP_AUTHOR_KEY', 'eap_author_key');
 define('EAP_USERNAME', 'eap_username');
-define('EVANTO_USER_API','https://api.envato.com/v3/market/user');
+define('EVANTO_USER_API', 'https://api.envato.com/v3/market/user');
 
 class Evanto_author_portal
 {
@@ -77,7 +75,9 @@ class Evanto_author_portal
 
     function checkUpdate()
     {
-        require_once plugin_dir_path(__FILE__).'updater/plugin-updater.php';
+
+        require_once plugin_dir_path(__FILE__).'updater/updater.php';
+//        require_once plugin_dir_path(__FILE__).'updater/plugin-updater.php';
     }
 
     function activate()
@@ -100,12 +100,12 @@ class Evanto_author_portal
         dbDelta($query);
 
         //check table created
-        if($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}$eap_table'") != $wpdb->prefix.$eap_table){
+        if($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}$eap_table'") != $wpdb->prefix.$eap_table) {
             die('Unable to create database. Check plugin.');
         }
 
         add_option(EAP_AUTHOR_KEY, '');
-        add_option(EAP_USERNAME,'');
+        add_option(EAP_USERNAME, '');
     }
 
     function deactivate()

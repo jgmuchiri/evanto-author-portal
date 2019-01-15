@@ -1,0 +1,17 @@
+{
+  "name" : "Evanto Author Plugin",
+  "slug" : "evanto-author-portal",
+  "download_url" : "https://gitlab.com/jgmuchiri/evanto-author-portal/-/archive/master/evanto-author-portal-master.zip",
+  "version" : "1.2",
+  "requires" : "5.0.2",
+  "tested" : "5.0.3",
+  "last_updated" : "2019-01-14 02:10:00",
+  "upgrade_notice" : "Feature updates",
+  "author" : "John Muchiri",
+  "author_homepage" : "https://johnmuchiri.com",
+  "sections" : {
+    "description" : "Evanto Authors Portal to manage products and verify purchases<br/>Manage your Evanto account in one place. <br/>Create a token here https://build.envato.com/create-token/ <br/>Features: Evanto Purchase Verification<br/> My collections<br/> My orders<br/> Downloads",
+    "installation" : "- Upload to your WordPress site plugin and activate <br/>- Go go https://build.envato.com/create-token/ and obtain a token<br/>- Enter your token and your username",
+    "changelog" : "- Feature updates"
+  }
+}
