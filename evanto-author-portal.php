@@ -3,7 +3,7 @@
 Plugin Name: Evanto Author Portal
 Plugin URI: https://gitlab.com/jgmuchiri/evanto-author-portal/
 Description: Evanto Purchase Verification Plugin. Create a token here https://build.envato.com/create-token/
-Version: 1.3
+Version: 1.4
 Author: A&M Digital Tech
 Contributors: John Muchiri
 Author URI: https://amdtllc.com
