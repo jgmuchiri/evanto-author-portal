@@ -4,7 +4,6 @@ define('PLUGIN_JSON', 'https://gitlab.com/jgmuchiri/evanto-author-portal/blob/ma
 define('PLUGIN_BANNER_LOW', 'https://via.placeholder.com/350x150');//772x250
 define('PLUGIN_BANNER_HIGH', 'https://via.placeholder.com/350x150');//1544x500
 define('PLUGIN_CACHE_TIME', 43200); //12 hrs
-define('PLUGIN_CURRENT_VERSION', '1.0');
 
 /*
  * $res contains information for plugins with custom update server 
