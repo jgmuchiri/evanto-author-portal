@@ -9,11 +9,6 @@
                        href="?page=<?php echo $_GET['page']; ?>">
                         Home</a>
                 </li>
-                <li>
-                    <a class="btn btn-warning"
-                       href="?page=<?php echo $_GET['page']; ?>&tab=verify_purchase">
-                        Verify Purchase</a>
-                </li>
 
                 <li>
                     <a class="btn btn-success"
@@ -25,16 +20,21 @@
                        href="?page=<?php echo $_GET['page']; ?>&tab=month-sales">
                         Monthly Sales</a>
                 </li>
+                <li>
+                    <a class="btn btn-warning"
+                       href="?page=<?php echo $_GET['page']; ?>&tab=verify_purchase">
+                        Verify Purchase</a>
+                </li>
+                <li>
+                    <a class="btn btn-warning"
+                       href="?page=<?php echo $_GET['page']; ?>&tab=verified_purchases">
+                        Verified Purchases</a>
+                </li>
                 <li><hr/></li>
                 <li>
                     <a class="btn btn-info"
                        href="?page=<?php echo $_GET['page']; ?>&tab=orders">
                         My Orders</a>
-                </li>
-                <li>
-                    <a class="btn btn-info"
-                       href="?page=<?php echo $_GET['page']; ?>&tab=verified_purchases">
-                        Verified Purchases</a>
                 </li>
                 <li>
                     <a class="btn btn-info"

@@ -13,10 +13,10 @@ if(isset($_GET['type']) && !empty($_GET['type'])) {
 }
 ?>
 <h3>Browse Evanto Catalog</h3>
-<?php foreach ($eap_client->sites as $site): ?>
+<?php foreach ($eap_client->sites as $csite): ?>
     <a class="label label-default"
        style="padding:8px 10px;background:#9a8484"
-       href="<?php echo '?page='.$_GET['page'].'&tab=browse&site='.$site.'&type='.$type; ?>"><?php echo ucfirst($site); ?></a>
+       href="<?php echo '?page='.$_GET['page'].'&tab=browse&site='.$csite.'&type='.$type; ?>"><?php echo ucfirst($csite); ?></a>
 <?php endforeach; ?>
 <hr/>
 

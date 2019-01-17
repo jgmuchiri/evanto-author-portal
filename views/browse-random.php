@@ -3,6 +3,7 @@ $results = $eap_client->fetchData($eap_client->methods['catalog']['random']);
 if(!empty($results->{'random-new-files'})):
 
     foreach ($results->{'random-new-files'} as $result):
+        $item = $eap_client->fetchData($eap_client->methods['catalog']['item'].'?id='.$result->id);
         ?>
         <div class="col-md-4" style="margin-bottom: 10px;">
             <div class="card-content">
@@ -14,7 +15,7 @@ if(!empty($results->{'random-new-files'})):
                         </audio>
                     <?php else: ?>
                         <img style="height:210px;"
-                             src="<?php echo $result->live_preview_url; ?>"/>
+                             src="<?php echo $item->previews->landscape_preview->landscape_url; ?>"/>
                     <?php endif; ?>
 
 
