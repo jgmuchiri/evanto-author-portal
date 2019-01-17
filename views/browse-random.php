@@ -4,6 +4,7 @@ if(!empty($results->{'random-new-files'})):
 
     foreach ($results->{'random-new-files'} as $result):
         $item = $eap_client->fetchData($eap_client->methods['catalog']['item'].'?id='.$result->id);
+
         ?>
         <div class="col-md-4" style="margin-bottom: 10px;">
             <div class="card-content">
@@ -13,6 +14,15 @@ if(!empty($results->{'random-new-files'})):
                             <source src="<?php echo $result->live_preview_url; ?>" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
+                    <?php elseif($site=='videohive'): ?>
+                        <img style="height:210px;"
+                             src="<?php echo $item->previews->icon_with_video_preview->landscape_url; ?>"/>
+                    <?php elseif($site=='graphicriver'): ?>
+                        <img style="height:210px;"
+                             src="<?php echo $item->previews->icon_with_square_preview->square_url; ?>"/>
+                    <?php elseif($site=='3docean'): ?>
+                        <img style="height:210px;"
+                             src="<?php echo $item->previews->icon_with_square_preview->square_url; ?>"/>
                     <?php else: ?>
                         <img style="height:210px;"
                              src="<?php echo $item->previews->landscape_preview->landscape_url; ?>"/>

@@ -12,7 +12,8 @@ if(isset($_GET['type']) && !empty($_GET['type'])) {
     $type = 'random';
 }
 ?>
-<h3>Browse Evanto Catalog</h3>
+<h3>Browse Evanto <strong style="color:#a15f23"><?php echo ucfirst($site); ?></strong> Catalog</h3>
+<br/>
 <?php foreach ($eap_client->sites as $csite): ?>
     <a class="label label-default"
        style="padding:8px 10px;background:#9a8484"

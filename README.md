@@ -1,4 +1,4 @@
-# Evanto Purchase Validator Plugin
+# Evanto Author Portal
 
 
 ![Screenshot](/assets/screenshots/not-verified.jpg?raw=true "Not verified!")
