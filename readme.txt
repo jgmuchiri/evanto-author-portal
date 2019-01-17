@@ -6,7 +6,7 @@ Donate link: https://cashier.amdtllc.com
 Requires at least: 5.0.1
 Tested up to: 5.0.3
 Requires PHP: 7.2.0
-Stable tag: 1.6
+Stable tag: 1.7
 License: MIT
 License URI: https://amdtllc.com/terms
 

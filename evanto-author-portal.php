@@ -3,7 +3,7 @@
 Plugin Name: Evanto Author Portal
 Plugin URI: https://gitlab.com/jgmuchiri/evanto-author-portal/
 Description: Evanto Author Portal. Manage your Evanto account from your WordPress dashboard. Create a token here https://build.envato.com/create-token/
-Version: 1.6
+Version: 1.7
 Author: A&M Digital Tech
 Contributors: John Muchiri
 Author URI: https://amdtllc.com
@@ -54,6 +54,7 @@ class Evanto_author_portal
         wp_enqueue_style('bootstrap', $dir.'assets/css/bootstrap.min.css');
         wp_enqueue_style('style-main', $dir.'assets/css/style.css');
         wp_enqueue_style('datatables', 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css');
+        wp_enqueue_style('chartist', '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css');
     }
 
     function eap_scripts()
@@ -62,6 +63,7 @@ class Evanto_author_portal
         wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.3.1.js', [], NULL, TRUE);
         wp_enqueue_script('datatables', '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js', ['jquery'], NULL, TRUE);
 //        wp_enqueue_script('bootstrap', $dir.'assets/js/bootstrap.min.js', [], NULL, TRUE);
+        wp_enqueue_script('chartist', '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js',NULL, NULL, false);
         wp_enqueue_script('custom', $dir.'assets/js/custom.js', ['jquery'], NULL, TRUE);
     }
 
