@@ -20,7 +20,7 @@ define('EAP_USERNAME', 'eap_username');
 define('EVANTO_USER_API_V1', 'https://api.envato.com/v1/market/');
 define('EVANTO_USER_API_V3', 'https://api.envato.com/v3/market/');
 define('EVANTO_DEFAULT_SITE', 'themeforest'); //codecanyon,themeforest,videohive,auidojungle,graphicsriver,photodune,3docean
-
+define('EAP_UPDATE_TOKEN','eap_update_token');
 class Evanto_author_portal
 {
 
@@ -113,6 +113,8 @@ class Evanto_author_portal
 
         add_option(EAP_AUTHOR_KEY, '');
         add_option(EAP_USERNAME, '');
+        add_option(EAP_UPDATE_TOKEN, site_url('/').'__'.time());
+        //todo: register site to remove server
     }
 
     function deactivate()
@@ -122,6 +124,7 @@ class Evanto_author_portal
 
         delete_option(EAP_AUTHOR_KEY);
         delete_option(EAP_USERNAME);
+        //delete_option(EAP_UPDATE_TOKEN);
     }
 }
 

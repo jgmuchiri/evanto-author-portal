@@ -1,6 +1,6 @@
 <?php
 define('PLUGIN_SLUG', 'evanto-author-portal');
-define('PLUGIN_JSON', 'https://amdtllc.com/wp/plugins/evanto-author-portal.json');
+define('PLUGIN_JSON', 'https://amdtllc.com/wp/plugins/evanto-author-portal');
 define('PLUGIN_BANNER_LOW', 'https://snag.gy/xs4EbG.jpg');//772x250
 define('PLUGIN_BANNER_HIGH', 'https://snag.gy/xs4EbG.jpg');//1544x500
 define('PLUGIN_CACHE_TIME', 43200); //12 hrs
@@ -10,8 +10,8 @@ define('PLUGIN_CACHE_TIME', 43200); //12 hrs
  * $action 'plugin_information'
  * $args stdClass Object ( [slug] => woocommerce [is_ssl] => [fields] => Array ( [banners] => 1 [reviews] => 1 [downloaded] => [active_installs] => 1 ) [per_page] => 24 [locale] => en_US )
  */
-add_filter('plugins_api', 'gatebe_plugin_info', 20, 3);
-function gatebe_plugin_info($res, $action, $args)
+add_filter('plugins_api', 'evanto_author_info', 20, 3);
+function evanto_author_plugin_info($res, $action, $args)
 {
     // do nothing if this is not about getting plugin information
     if($action !== 'plugin_information')
@@ -25,7 +25,7 @@ function gatebe_plugin_info($res, $action, $args)
     if(FALSE == $remote = get_transient('gatebe_upgrade_'.PLUGIN_SLUG)) {
 
         // info.json is the file with the actual plugin information on your server
-        $remote = wp_remote_get(PLUGIN_JSON, [
+        $remote = wp_remote_get(PLUGIN_JSON.'/?token='.get_option(EAP_UPDATE_TOKEN), [
                 'timeout' => 10,
                 'headers' => [
                     'Accept' => 'application/json',
@@ -69,24 +69,23 @@ function gatebe_plugin_info($res, $action, $args)
             'high' => PLUGIN_BANNER_HIGH,
         ];
         return $res;
-
     }
 
     return FALSE;
 
 }
 
-add_filter('site_transient_update_plugins', 'gatebe_push_update');
-function gatebe_push_update($transient)
+add_filter('site_transient_update_plugins', 'evanto_author_push_update');
+function evanto_author_push_update($transient)
 {
     if(empty($transient->checked)) {
         return $transient;
     }
     // trying to get from cache first
-    if(FALSE == $remote = get_transient('gatebe_upgrade_'.PLUGIN_SLUG)) {
+    if(FALSE == $remote = get_transient('evanto_author_upgrade_'.PLUGIN_SLUG)) {
 
         // info.json is the file with the actual plugin information on your server
-        $remote = wp_remote_get(PLUGIN_JSON, [
+        $remote = wp_remote_get(PLUGIN_JSON.'/?token='.get_option(EAP_UPDATE_TOKEN),  [
                 'timeout' => 10,
                 'headers' => [
                     'Accept' => 'application/json',
@@ -94,7 +93,7 @@ function gatebe_push_update($transient)
         );
 
         if(!is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && !empty($remote['body'])) {
-            set_transient('gatebe_upgrade_'.PLUGIN_SLUG, $remote, PLUGIN_CACHE_TIME);
+            set_transient('evanto_author_upgrade_'.PLUGIN_SLUG, $remote, PLUGIN_CACHE_TIME);
         }
 
     }
@@ -125,11 +124,11 @@ function gatebe_push_update($transient)
     return $transient;
 }
 
-add_action('upgrader_process_complete', 'gatebe_after_update', 10, 2);
-function gatebe_after_update($upgrader_object, $options)
+add_action('upgrader_process_complete', 'evanto_author_after_update', 10, 2);
+function evanto_author_after_update($upgrader_object, $options)
 {
     if($options['action'] == 'update' && $options['type'] === 'plugin') {
         // just clean the cache when new plugin version is installed
-        delete_transient('gatebe_upgrade_'.PLUGIN_SLUG);
+        delete_transient('evanto_author_upgrade_'.PLUGIN_SLUG);
     }
 }
