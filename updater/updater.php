@@ -1,8 +1,8 @@
 <?php
 define('PLUGIN_SLUG', 'evanto-author-portal');
-define('PLUGIN_JSON', 'https://gitlab.com/jgmuchiri/evanto-author-portal/raw/master/plugin.json');
-define('PLUGIN_BANNER_LOW', 'https://via.placeholder.com/350x150');//772x250
-define('PLUGIN_BANNER_HIGH', 'https://via.placeholder.com/350x150');//1544x500
+define('PLUGIN_JSON', 'https://amdtllc.com/wp/plugins/evanto-author-portal.json');
+define('PLUGIN_BANNER_LOW', 'https://snag.gy/xs4EbG.jpg');//772x250
+define('PLUGIN_BANNER_HIGH', 'https://snag.gy/xs4EbG.jpg');//1544x500
 define('PLUGIN_CACHE_TIME', 43200); //12 hrs
 
 /*

@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Evanto Author Portal
-Plugin URI: https://gitlab.com/jgmuchiri/evanto-author-portal/
+Plugin URI: https://amdtllc.com/wp/plugins/evanto-author-portal
 Description: Evanto Author Portal. Manage your Evanto account from your WordPress dashboard. Create a token here https://build.envato.com/create-token/
 Version: 1.7
 Author: A&M Digital Tech
